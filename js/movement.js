@@ -119,31 +119,43 @@ var setYVelocity = function(angle, max) {
     }
 }
 
+
 // start angle of duck
-var angle = 135;
+var angles = [];
+var moveDivs = document.getElementsByClassName("move");
+console.log(moveDivs.length);
+
+var populateArray = function(length) {
+    for (var i = 0; i < length; i++) {
+        angles.push(360 * Math.random());
+    }
+}
+populateArray(moveDivs.length);
+console.log(angles);
 
 var moveDuck = function(e) {
-    var duckImage = document.getElementById("duck");
-    var moveDiv = document.querySelector(".move");
     var max = 10;
 
-    angle = checkWalls(moveDiv, angle);
+    for (var i = 0; i < moveDivs.length; i++) {
+        var moveDiv = moveDivs[i];
+        angles[i] = checkWalls(moveDiv, angles[i]);
 
-    var x = (moveDiv.style.left);
-    var y = (moveDiv.style.top);
-    x=x.substring(0,x.length-2);
-    x=parseInt(x);
-    y=y.substring(0,y.length-2);
-    y=parseInt(y);
+        var x = (moveDiv.style.left);
+        var y = (moveDiv.style.top);
+        x=x.substring(0,x.length-2);
+        x=parseInt(x);
+        y=y.substring(0,y.length-2);
+        y=parseInt(y);
 
-    if (isNaN(x)) x=200;
-    if (isNaN(y)) y=200;
+        if (isNaN(x)) x=200;
+        if (isNaN(y)) y=200;
 
-    x = x + setXVelocity(angle, max);
-    y = y + setYVelocity(angle, max);
+        x = x + setXVelocity(angles[i], max);
+        y = y + setYVelocity(angles[i], max);
 
-    moveDiv.style.left = x + "px";
-    moveDiv.style.top = y + "px";
+        moveDiv.style.left = x + "px";
+        moveDiv.style.top = y + "px";
+    }
 
     checkMouse();
 }
