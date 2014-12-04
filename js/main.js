@@ -37,7 +37,7 @@ var playSound = function(e) {
 
     if (distanceFromDuck < 300) {
         audio = new Audio('audio_file1.mp3');
-    } else if (distanceFromDuck < 450) {
+    } else if (distanceFromDuck < 500) {
         audio = new Audio('audio_file2.mp3');
     } else {
         audio = new Audio('audio_file3.mp3');
