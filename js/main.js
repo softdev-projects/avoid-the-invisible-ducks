@@ -30,7 +30,23 @@ var revealDuck = function() {
         duck.style.visibility = "visible";
 }
 
+/* make separate event so we can time how fast to play the sound */
+var playSound = function(e) {
+    var audio;
+    var distanceFromDuck = distanceFromMouse(duck);
+
+    if (distanceFromDuck < 300) {
+        audio = new Audio('audio_file1.mp3');
+    } else if (distanceFromDuck < 450) {
+        audio = new Audio('audio_file2.mp3');
+    } else {
+        audio = new Audio('audio_file3.mp3');
+    }
+    audio.play();
+}
+
 window.onload = function() {
         this.addEventListener("mousemove", updateMouseCoords);
+        var soundEvent = setInterval(playSound, 500);
         startit();
 };

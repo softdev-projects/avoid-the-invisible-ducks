@@ -134,7 +134,7 @@ populateArray(moveDivs.length);
 console.log(angles);
 
 var moveDuck = function(e) {
-    var max = 10;
+    var max = 5;
 
     for (var i = 0; i < moveDivs.length; i++) {
         var moveDiv = moveDivs[i];
